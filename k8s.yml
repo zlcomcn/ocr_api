@@ -25,7 +25,7 @@ spec:
   type: ClusterIP
   ports:
   - name: "ocr-api"
-    port: 8080
+    port: 9898
   selector:
     app: ocr-api
 
@@ -45,6 +45,6 @@ spec:
               service:
                 name: ocr-api
                 port:
-                  number: 8080
+                  number: 9898
             path: /
             pathType: ImplementationSpecific
