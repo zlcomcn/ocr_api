@@ -1,12 +1,12 @@
 name: python-ocr-api
 build:
-  ocr-api:
+  ocr:
     image: okteto.dev/python-ocr-api:1.0.0
     context: .
 deploy:
   - kubectl apply -f k8s.yml
 dev:
-  ocr-api:
+  ocr:
     command: bash
     environment:
       - FLASK_ENV=development
