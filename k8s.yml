@@ -1,49 +1,49 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ocr-api
+  name: ocr
 spec:
   selector:
     matchLabels:
-      app: ocr-api
+      app: ocr
   template:
     metadata:
       labels:
-        app: ocr-api
+        app: ocr
     spec:
       containers:
       - image: okteto.dev/python-ocr-api:1.0.0
-        name: ocr-api
+        name: ocr
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: ocr-api
+  name: ocr
 spec:
   type: ClusterIP
   ports:
-  - name: "ocr-api"
+  - name: "ocr"
     port: 9898
   selector:
-    app: ocr-api
+    app: ocr
 
 ---
 
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ocr-api
+  name: ocr
   annotations:
-    dev.okteto.com/generate-host: ocr-api
+    dev.okteto.com/generate-host: ocr
 spec:
   rules:
     - http:
         paths:
           - backend:
               service:
-                name: ocr-api
+                name: ocr
                 port:
                   number: 9898
             path: /
